@@ -279,7 +279,7 @@ export function evaluateCell(
   const formula = raw.slice(1).trim();
 
   // Check for function call: FUNCNAME(...)
-  const fnMatch = formula.match(/^([A-Z]+)\((.*)?\)$/s);
+  const fnMatch = formula.match(/^([A-Z]+)\(([\s\S]*)?\)$/);
   if (fnMatch) {
     const fnName = fnMatch[1];
     const argsStr = fnMatch[2] ?? "";
