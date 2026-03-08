@@ -1,0 +1,119 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --col-default-width: 120px;
+  --row-default-height: 25px;
+  --row-header-width: 46px;
+  --col-header-height: 24px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  height: 100dvh;
+}
+
+/* Grid cell styles */
+.cell-input {
+  @apply w-full h-full border-0 outline-none bg-transparent px-1 font-mono text-sm;
+  resize: none;
+}
+
+.cell-selected {
+  outline: 2px solid #1a73e8;
+  outline-offset: -2px;
+  z-index: 10;
+}
+
+.grid-container {
+  overflow: auto;
+  position: relative;
+}
+
+/* Presence cursor */
+.presence-cursor {
+  position: absolute;
+  pointer-events: none;
+  z-index: 20;
+  border: 2px solid var(--presence-color);
+}
+
+/* Column resize handle */
+.col-resize-handle {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  cursor: col-resize;
+  background: transparent;
+  z-index: 5;
+}
+.col-resize-handle:hover,
+.col-resize-handle.active {
+  background: #1a73e8;
+}
+
+/* Row resize handle */
+.row-resize-handle {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 4px;
+  width: 100%;
+  cursor: row-resize;
+  background: transparent;
+  z-index: 5;
+}
+.row-resize-handle:hover,
+.row-resize-handle.active {
+  background: #1a73e8;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f3f4;
+}
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #a1a1a1;
+}
+
+/* Formula bar */
+.formula-bar {
+  @apply flex items-center gap-2 px-3 py-1 border-b border-sheet-border bg-white;
+  height: 32px;
+  min-height: 32px;
+}
+
+/* Toolbar */
+.toolbar {
+  @apply flex items-center gap-1 px-3 py-1 border-b border-sheet-border bg-white;
+  height: 40px;
+  min-height: 40px;
+  flex-wrap: nowrap;
+  overflow: hidden;
+}
+
+/* Write state indicator */
+@keyframes saving-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+.saving-indicator {
+  animation: saving-pulse 1s ease-in-out infinite;
+}
